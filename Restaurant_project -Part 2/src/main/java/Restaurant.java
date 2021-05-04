@@ -45,6 +45,14 @@ public class Restaurant {
         return null;
     }
 
+    private Item findSelItemByName(String itemName) {
+        for (Item item : SelItem) {
+            if (item.getName().equals(itemName))
+                return item;
+        }
+        return null;
+    }
+
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name, price);
         menu.add(newItem);
@@ -73,5 +81,27 @@ public class Restaurant {
         return name;
     }
 
+    public void addToSelMenu(String Selname, int Price) {
+        Item newItem = new Item(Selname, Price);
+        SelItem.add(newItem);
+    }
+    public void remFromSelMenu(String Selname) {
+        Item newItem = findSelItemByName(Selname);
+        SelItem.remove(newItem);
+    }
+    public List<Item> getSelMenu() {
+        return SelItem;
+    }
+    public int OrderTotal() {
+        int sum=0;
+        for (Item selItem : SelItem) {
+            String name = selItem.getName();
+            Item OrdTotalMenu = findItemByName(name);
+            int total = OrdTotalMenu.getPrice();
+            sum= sum+total;
+                    }
+        return sum;
     }
 
+
+}

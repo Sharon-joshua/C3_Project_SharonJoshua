@@ -79,6 +79,14 @@ class RestaurantTest {
         restaurant.addToSelMenu("Sweet corn soup",119);
         restaurant.addToSelMenu("Vegetable lasagne", 269);
         assertEquals(388,restaurant.OrderTotal());
+
+        int initialSelMenuSize = restaurant.getSelMenu().size();
+        restaurant.addToSelMenu("Sizzling brownie",319);
+        assertEquals(initialSelMenuSize+1,restaurant.getSelMenu().size());
+
+        int nextSelMenuSize = restaurant.getSelMenu().size();
+        restaurant.remFromSelMenu("Sizzling brownie");
+        assertEquals(nextSelMenuSize-1,restaurant.getSelMenu().size());
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
